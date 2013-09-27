@@ -53,18 +53,16 @@ echo "drush si minimal --db-url=mysql://${1}:${1}dbpass/${1}_${2} -y"
 
 cp -f ${gitignore} ./
 git init
-git branch develop
 git add .
 git commit -a -m "Init"
+git branch develop
+git config merge.ff false #disabling fast-forward
 
 mv .git ../repository
 echo Moving ./.git to ../repository
 cd ..
 echo Creating simlink ${git_repos}/${1}_${2}.git on ${proj_dir}/repository
 ln -s ${proj_dir}/repository ${git_repos}/${1}_${2}.git
-echo Setting permisions to ${proj_dir}/repository 
-chown -R git ${proj_dir}/repository
-chgrp -R git ${proj_dir}/repository
 
 echo Crating Vhost
 touch vhost.conf
@@ -111,11 +109,23 @@ service mysql reload
 
 echo Create config file
 touch ${proj_dir}/scripts/config.sh
-echo "!#/bin/bash
+echo "#!/bin/bash
 PROJECT_DIR=${proj_dir}
 PROJECT_NAME=${2}
 PARTNER=${1}
 ENVIRONMENTS=( develop )
 #end" > ${proj_dir}/scripts/config.sh
+
+echo Copying files... 
+cp /home/ideath/scripts/develop_deploy.sh ${proj_dir}/scripts/
+#wget --directory-prefix=${proj_dir} http://raw.github... 
+
+echo Permissions...
+chown -R ideath ${proj_dir}
+chgrp -R awd ${proj_dir}
+
+echo Setting permisions to ${proj_dir}/repository 
+chown -R git ${proj_dir}/repository
+chgrp -R git ${proj_dir}/repository
 
 echo Project has been created successfully
