@@ -1,0 +1,48 @@
+#IDE resources
+.project
+*.config
+.idea
+.settings
+resources
+nbproject
+private
+.idea
+*.sublime-project
+*.sublime-workspace
+*.back
+*.old
+*.swp
+
+# By default, ignore all files in root directory.
+/*.*
+
+# Exceptions
+!/*.make
+!/.gitignore
+# Uncomment following line if modifying .htaccess ?
+#!.htaccess
+
+# Ignore Drupal folders
+/includes
+/misc
+/modules
+/scripts
+/themes
+#/sites
+/profiles
+#/profiles/minimal
+#/profiles/standard
+#/profiles/testing
+
+#Only modules/custom and all themes of sites folder.
+!/sites/
+/sites/*
+!/sites/all
+/sites/all/*
+!/sites/all/themes
+/sites/all/themes/*
+!/sites/all/themes/*_*
+!/sites/all/modules/
+/sites/all/modules/*
+!/sites/all/modules/custom
+!/sites/all/modules/features
