@@ -1,0 +1,6 @@
+#!/bin/bash
+BRANCH=$(git rev-parse --symbolic --abbrev-ref $1)
+
+if [ ${BRANCH} = "develop" ]; then
+	exec ../scripts/develop_deploy.sh	
+fi
